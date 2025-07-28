@@ -1,0 +1,462 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+}
+
+.footer {
+    background-color: #252525;
+    border-top: 1px solid #404040;
+    padding: 15px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.copyright {
+    color: #888;
+    font-size: 14px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    color: #888;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links a:hover {
+    color: #007bff;
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+.editor-section {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: #2d2d2d;
+    border-right: 1px solid #404040;
+}
+
+.editor-tabs {
+    display: flex;
+    background-color: #252525;
+    border-bottom: 1px solid #404040;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-btn:hover {
+    color: #fff;
+    background-color: #333;
+}
+
+.tab-btn.active {
+    color: #fff;
+    background-color: #2d2d2d;
+    border-bottom-color: #007bff;
+}
+
+.editor-content {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.editor-pane {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+.editor-pane.active {
+    display: block;
+}
+
+.editor-pane textarea {
+    width: 100%;
+    height: 100%;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    border: none;
+    padding: 20px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: none;
+    outline: none;
+    tab-size: 2;
+}
+
+.run-btn {
+    padding: 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.run-btn:hover {
+    background-color: #0056b3;
+}
+
+.preview-section {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: #2d2d2d;
+}
+
+.device-tabs {
+    display: flex;
+    background-color: #252525;
+    border-bottom: 1px solid #404040;
+}
+
+.device-tab {
+    flex: 1;
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.device-tab:hover {
+    color: #fff;
+    background-color: #333;
+}
+
+.device-tab.active {
+    color: #fff;
+    background-color: #2d2d2d;
+    border-bottom-color: #007bff;
+}
+
+.preview-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow: auto;
+}
+
+.device-frame {
+    display: none;
+    position: relative;
+}
+
+.device-frame.active {
+    display: block;
+}
+
+.desktop-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.desktop-frame .device-screen {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.phone-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.phone-frame.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.phone-body {
+    width: 390px;
+    height: 844px;
+    background: #1a1a1a;
+    border-radius: 50px;
+    padding: 10px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform-origin: center center;
+}
+
+.phone-notch {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 35px;
+    background: #1a1a1a;
+    border-radius: 25px;
+    z-index: 10;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.phone-body .device-screen {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.tablet-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.tablet-frame.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tablet-body {
+    width: 820px;
+    height: 1180px;
+    background: #1a1a1a;
+    border-radius: 30px;
+    padding: 15px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform-origin: center center;
+}
+
+.tablet-body .device-screen {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#theme-toggle {
+    background: transparent;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 12px 20px;
+    color: #888;
+    transition: all 0.3s ease;
+}
+
+#theme-toggle:hover {
+    border: 2px solid #414244;
+    border-radius: 8px;
+}
+.device-screen iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: white;
+}
+
+/* Responsive design */
+@media (max-width: 1400px) {
+    .phone-body {
+        width: 320px;
+        height: 693px;
+        border-radius: 40px;
+    }
+    
+    .tablet-body {
+        width: 768px;
+        height: 1024px;
+        border-radius: 25px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .editor-section,
+    .preview-section {
+        width: 100%;
+        height: 50vh;
+    }
+    
+    .editor-section {
+        border-right: none;
+        border-bottom: 1px solid #404040;
+    }
+    
+    .phone-body {
+        width: 280px;
+        height: 606px;
+        border-radius: 35px;
+    }
+    
+    .tablet-body {
+        width: 600px;
+        height: 800px;
+        border-radius: 20px;
+    }
+}
+
+/* Light theme styles */
+body.light-theme {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+body.light-theme .editor-section {
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+}
+
+body.light-theme .editor-tabs {
+    background-color: #fafafa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+body.light-theme .tab-btn {
+    color: #666;
+}
+
+body.light-theme .tab-btn:hover {
+    color: #333;
+    background-color: #f0f0f0;
+}
+
+body.light-theme .tab-btn.active {
+    color: #007bff;
+    background-color: #ffffff;
+    border-bottom-color: #007bff;
+}
+
+body.light-theme .editor-pane textarea {
+    background-color: #ffffff;
+    color: #333;
+}
+
+body.light-theme .preview-section {
+    background-color: #ffffff;
+}
+
+body.light-theme .device-tabs {
+    background-color: #fafafa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+body.light-theme .device-tab {
+    color: #666;
+}
+
+body.light-theme .device-tab:hover {
+    color: #333;
+    background-color: #f0f0f0;
+}
+
+body.light-theme .device-tab.active {
+    color: #007bff;
+    background-color: #ffffff;
+    border-bottom-color: #007bff;
+}
+
+body.light-theme .phone-body,
+body.light-theme .tablet-body {
+    background: #ccc;
+}
+
+body.light-theme .phone-notch {
+    background: #ccc;
+}
+
+body.light-theme ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+body.light-theme ::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+}
+
+body.light-theme ::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
